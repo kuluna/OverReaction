@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OverReaction</title>
+
+    <!-- Google Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Angular Styles -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.css">
+</head>
+<body ng-app="app" ng-cloak ng-controller="appController" layout="column">
+    <md-content layout="column" layout-align="none center">
+        <!-- Toolbar -->
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <span flex>OverReaction</span>
+                <md-button ng-href="swagger/ui">SHOW API</md-button>
+            </div>
+        </md-toolbar>
+
+        <!-- Reaction Cards -->
+        <div>
+            <div layout-wrap layout="row" layout-align="center none" layout-padding>
+                <md-card ng-repeat="reaction in reactions" style="width:300px">
+                    <md-card-content layout="column">
+                        <form name="reactionForm" novalidate>
+                            <md-input-container>
+                                <label>Word</label>
+                                <input required ng-model="reaction.word">
+                            </md-input-container>
+                            <div layout="row" layout-align="none center">
+                                <md-autocomplete required md-selected-item="reaction.emoji" md-search-text="searchText" md-items="name in emojiNames | filter:searchText" md-item-text="name" md-floating-label="Emoji" md-require-match>
+                                    <span md-highlight-text="searchText">{{name}}</span>
+                                </md-autocomplete>
+                                <img ng-show="emoji[reaction.emoji]" ng-src="{{emoji[reaction.emoji]}}" style="width:20px;height:20px" />
+                            </div>
+                        </form>
+                    </md-card-content>
+
+                    <md-card-action layout="row" layout-align="end none">
+                        <md-button class="md-raised md-icon-button" ng-click="update(reaction)" ng-disabled="reactionForm.$invalid"><i class="material-icons">check</i></md-button>
+                        <md-button class="md-icon-button" ng-click="delete(reaction)"><i class="material-icons">delete</i></md-button>
+                    </md-card-action>
+                </md-card>
+            </div>
+        </div>
+
+        <!-- Bottom Margin -->
+        <div style="min-height:80px"></div>
+
+        <!-- Floating Action Button -->
+        <md-button id="new" class="md-fab md-fab-bottom-right" style="position:fixed!important" ng-click="newDialog()"><md-icon><i class="material-icons">add</i></md-icon></md-button>
+    </md-content>
+
+    <!-- New Reaction Dialog -->
+    <div style="visibility: hidden">
+        <div id="newDialog" class="md-dialog-container">
+            <md-dialog style="width:400px">
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <span flex>New</span>
+                        <md-button class="md-icon-button" ng-click="dialogClose()"><i class="material-icons">close</i></md-button>
+                    </div>
+                </md-toolbar>
+                <md-dialog-content layout-padding>
+                    <form name="newReactionForm" novalidate layout="column">
+                        <md-input-container>
+                            <label>Word</label>
+                            <input required ng-model="newWord">
+                        </md-input-container>
+                        <div layout="row" layout-align="none center">
+                            <md-autocomplete required md-selected-item="newEmoji" md-search-text="searchText" md-items="name in emojiNames | filter:searchText" md-item-text="name" md-floating-label="Emoji" md-require-match flex>
+                                <span md-highlight-text="searchText">{{name}}</span>
+                            </md-autocomplete>
+                            <img ng-show="emoji[newEmoji]" ng-src="{{emoji[newEmoji]}}" style="width:20px;height:20px" />
+                        </div>
+                    </form>
+                </md-dialog-content>
+                <md-dialog-actions>
+                    <md-button class="md-accent md-raised md-icon-button" ng-click="create(newWord, newEmoji)" ng-disabled="newReactionForm.$invalid"><i class="material-icons">check</i></md-button>
+                </md-dialog-actions>
+            </md-dialog>
+        </div>
+    </div>
+
+
+    <!-- Angular Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/defaultemoji.js"></script>
+</body>
+</html>
