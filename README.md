@@ -12,7 +12,7 @@ Reaction bot for slack
 
 # Setup
 - [Setup(日本語)](document/setup_ja.md)
-- [Setup(English)](document/setup_en.md) Under Construction...
+- [Setup(English)](document/setup_en.md)
 
 # Contributing
 1. Fork it!
