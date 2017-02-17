@@ -36,7 +36,7 @@ namespace OverReaction
                 setting.IncludeXmlComments(xmlPath);
             });
 
-            services.Configure<AppSetting>(Configuration.GetSection(nameof(AppSetting)));
+            services.Configure<OverReactionSetting>(Configuration.GetSection(nameof(OverReactionSetting)));
         }
 
         /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

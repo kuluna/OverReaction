@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 namespace OverReaction.Models
 {
     /// <summary>
-    /// appsetting.json
+    /// OverReaction environments
     /// </summary>
-    public class AppSetting
+    public class OverReactionSetting
     {
         /// <summary>
         /// Slack Outgoing WebHooks Token

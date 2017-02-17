@@ -29,6 +29,7 @@ app.controller('appController', function ($scope, $resource, $mdDialog, $filter,
         // ダイアログを消去
         $scope.newWord = ''
         $scope.newEmoji = ''
+        $scope.newReactionForm.$setUntouched()
         $mdDialog.hide()
     }
 

@@ -19,7 +19,7 @@ namespace OverReaction.Controllers
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public EmojiController(IOptions<AppSetting> options)
+        public EmojiController(IOptions<OverReactionSetting> options)
         {
             token = options.Value.XoxpToken;
         }

@@ -20,7 +20,7 @@ namespace OverReaction.Controllers
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public WebhookController(IOptions<AppSetting> options)
+        public WebhookController(IOptions<OverReactionSetting> options)
         {
             webhookToken = options.Value.WebhookToken;
             xoxpToken = options.Value.XoxpToken;
