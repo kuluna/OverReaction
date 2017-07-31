@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
 using OverReaction.Models;
 using OverReaction.Models.Request;
+using Newtonsoft.Json.Linq;
 
 namespace OverReaction.Controllers
 {
@@ -24,8 +24,10 @@ namespace OverReaction.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]EventRequest req)
+        public async Task<IActionResult> Post([FromBody]JObject request)
         {
+            var req = request.ToObject<EventRequest>();
+
             // Events API handshake challenge
             if (req.Type.Equals("url_verification"))
             {
@@ -34,7 +36,7 @@ namespace OverReaction.Controllers
 
             if (req.IsNewPost())
             {
-                db.EventLogs.Add(new SlackEventLog() { Text = req.Event.Text, Timestamp = DateTime.UtcNow });
+                db.EventLogs.Add(new SlackEventLog() { Text = request.ToString(), Timestamp = DateTime.UtcNow });
                 await db.SaveChangesAsync();
             }
 

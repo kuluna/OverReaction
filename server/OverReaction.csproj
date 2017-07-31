@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
+    <ApplicationInsightsResourceId>/subscriptions/d139cbf0-35af-4802-b9a3-d13a03729eaa/resourcegroups/overreaction/providers/microsoft.insights/components/overreaction</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/d139cbf0-35af-4802-b9a3-d13a03729eaa/resourcegroups/overreaction/providers/microsoft.insights/components/overreaction</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +19,9 @@
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 </Project>
